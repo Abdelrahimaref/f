@@ -26,8 +26,18 @@
 		            	<svg class="login_icon">
 	                          <use xlink:href="sprite.svg#icon-user"></use>
 	                    </svg></div>
-		                <input class="form_input" type="text" id="email" name="email" placeholder="Email"/>
-		                <label for="email" class="form_label">Email address</label>
+		                <input class="form_input" type="text" id="name" name="name" placeholder="Full Name"/>
+		                <label for="name" class="form_label">Full Name</label>
+		            </div>
+
+	            <div class="form_group">
+	            	<div class="login-box">
+	            		<div class="login_icon-box">
+		            	<svg class="login_icon">
+	                          <use xlink:href="sprite.svg#icon-phone"></use>
+	                    </svg></div>
+		                <input class="form_input" type="text" id="number" name="number" placeholder="number Ex.+2010xxxxxxxx"/>
+		                <label for="number" class="form_label">Phone Number</label>
 		            </div>
 	                
 	            </div>
@@ -35,25 +45,15 @@
 	            	<div class="login-box">
 	            		<div class="login_icon-box">
 		            	<svg class="login_icon">
-	                          <use xlink:href="sprite.svg#icon-key"></use>
+	                          <use xlink:href="sprite.svg#icon-globe"></use>
 	                    </svg></div>
-	                	<input class="form_input" type="password" id="password" name="password" placeholder="Password"/>
-	                	<label for="password" class="form_label">Password</label>
-	            	</div>   
+		                <input class="form_input" type="text" id="country" name="country" placeholder="Country"/>
+		                <label for="country" class="form_label">Country</label>
+		            </div>
+	                
 	            </div>
 	            <div class="form_group">
-	            	<div class="login-box">
-	            		<div class="login_icon-box">
-		            	<svg class="login_icon">
-	                          <use xlink:href="sprite.svg#icon-key"></use>
-	                    </svg></div>
-	                	<input class="form_input" type="password" id="Cpassword" name="Cpassword" placeholder="Confirm Password"/>
-	                	<label for="Cpassword" class="form_label">Confirm Password</label>
-	            	</div>
-	            </div>
-	            <div class="form_group">
-	                <button class="btn" id="quickstart-sign-in" name="signin">Continue</button>
-	                <p class="signup">Already have account.<a href="signin.html">sign in</a></p>
+	                <button class="btn" id="quickstart-sign-in" name="signin">Update Data</button>
 	            </div>
 	            <div class="form_group">
 	            	<div id="recaptcha-container"></div>
@@ -78,7 +78,7 @@
   <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#available-libraries -->
 
-  <script>
+  <!-- <script>
   // Your web app's Firebase configuration
     var firebaseConfig = {
       apiKey: "AIzaSyCF-CbzSuX2uzIeA9kCid9YooiQgPeR8BM",
@@ -100,48 +100,53 @@
       var applicationVerifier;
       firebase.auth().onAuthStateChanged(function(user) {
 			if (user) {
-				firebase.auth().signOut().then(function() {
-  					window.location = "/" ;
-				});
-			}
+			} 
+      else {
+        
+      window.location = 'signin.html'; //If User is not logged in, redirect to login page
 
+      }
 	   });
 
       
       function SignUP() {
-          var email = document.getElementById('email').value;
-          var password = document.getElementById('password').value;
-          var Cpassword = document.getElementById('Cpassword').value;
-
           
-          if (email.length < 4) {
-            alert('Please enter an email address.');
-            return;
-          }
-          if (password.length < 4) {
-            alert('Please enter a password.');
-            return;
-          }
-          if (password !== Cpassword) {
-            alert("Password dosen't match");
-            return;
-          }
           // Sign in with email and pass.
           // [START authwithemail]
-          firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-            // Handle Errors here.
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            // [START_EXCLUDE]
-            if (errorCode === 'auth/wrong-password') {
-              alert('Wrong password.');
-            } else {
-              alert(errorMessage);
-            }
-            console.log(error);
+          var user = firebase.auth().currentUser;
+          var country = document.getElementById('country').value;
+          var phone = document.getElementById('number').value;
+          var name = document.getElementById('name').value;
+
+          
+          if (document.getElementById('number').value[0] !=='+') {
+            alert('Please enter a valid number.');
+            return;
+          }
+        user.updateProfile({
+            displayName: name,
+            photoURL: country
+        }).catch(function(error) {
+            alert(error);
+        });
+
+
+        var provider = new firebase.auth.PhoneAuthProvider();
+        provider.verifyPhoneNumber(phone, applicationVerifier)
+          .then(function(verificationId) {
+            var verificationCode = window.prompt('Please enter the verification ' +
+              'code that was sent to your mobile device.');
+            return firebase.auth.PhoneAuthProvider.credential(verificationId,
+                verificationCode);
+          })
+          .then(function(phoneCredential) {
+            user.updatePhoneNumber(phoneCredential).then(()=>{
+              console.log(user.phoneNumber)
+              window.location = '/';
+            });
+            });
             // [END_EXCLUDE]
-          });
-      }
+          }
 
       /**
        * Handles the sign up button press.
@@ -156,7 +161,7 @@
       window.onload = function() {
         initApp();
       };
-  </script>
+  </script> -->
 
   
     

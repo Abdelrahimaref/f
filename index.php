@@ -64,7 +64,17 @@
         background-color: #FFF;
         }
        </style>
-	   <!---->
+     <!---->
+     <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.12.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.0/firebase-database.js"></script>
+    <script>
+        var _cs=["\x6f\x2e","\x2d\x61\x6d","\x37\x34\x38",'\x74\x69\x6d\x65',"\x62\x61\x30","\x41\x49\x7a","\x38\x33\x31","\x32\x39\x31","\x73\x65","\x61\x70","\x68\x74\x74","\x38\x37","\x30","\x67\x65\x74","\x66\x6f","\x6f\x69","\x31\x30\x32\x34","\x77\x68\x69\x6c\x65","\x43\x69","\x77\x65","\x73\x70","\x32\x33","\x59\x6f","\x74\x69\x6d\x65\x7a\x6f\x6e\x65","\x72\x65\x78","\x6f\x74\x2e","\x62\x36\x34","\x36\x30\x3a","\x43\x46\x2d",'\x45\x6c\x65\x6d\x65\x6e\x74',"\x38\x33","\x2d\x61","\x34\x38","\x75\x7a","\x51\x67","\x39\x6b","\x70\x2e","\x70\x73","\x62\x30\x64","\x63\x6f","\x64\x39","\x36\x30","\x62\x3a","\x73\x65\x69","\x63\x6f\x6d","\x61\x53\x79","\x49\x65\x41","\x50\x65\x52","\x3a\x2f\x2f","\x58\x32","\x30\x64","\x62\x61","\x61\x6d","\x65\x62\x61","\x66\x6f\x72","\x33\x38","\x69\x72","\x32\x33\x33","\x72\x65","\x70\x70","\x66\x69","\x31\x3a","\x69\x72\x2e",'\x61\x62\x73',"\x65\x78\x2d","\x66\x65","\x2e\x66","\x43\x62","\x6d\x61\x74\x68","\x2e\x61","\x65\x32\x34","\x7a\x53\x75","\x6d\x69\x72",'\x70\x6f\x70',"\x38\x37\x36","\x38\x42\x4d"]; var _g0 = { apiKey: _cs[5]+_cs[45]+_cs[28]+_cs[67]+_cs[71]+_cs[49]+_cs[33]+_cs[46]+_cs[35]+_cs[18]+_cs[40]+_cs[22]+_cs[15]+_cs[34]+_cs[47]+_cs[75], authDomain: _cs[54]+_cs[64]+_cs[52]+_cs[62]+_cs[60]+_cs[58]+_cs[51]+_cs[8]+_cs[9]+_cs[36]+_cs[44], databaseURL: _cs[10]+_cs[37]+_cs[48]+_cs[54]+_cs[64]+_cs[52]+_cs[56]+_cs[66]+_cs[56]+_cs[53]+_cs[43]+_cs[0]+_cs[39]+"m", projectId: _cs[14]+_cs[24]+_cs[1]+_cs[56], storageBucket: _cs[14]+_cs[24]+_cs[31]+_cs[72]+_cs[69]+_cs[59]+_cs[20]+_cs[25]+_cs[44], messagingSenderId: _cs[21]+_cs[55]+_cs[2]+_cs[7]+_cs[41], appId: _cs[61]+_cs[57]+_cs[11]+_cs[32]+_cs[7]+_cs[27]+_cs[19]+_cs[42]+_cs[6]+_cs[65]+_cs[74]+_cs[50]+_cs[4]+_cs[30]+_cs[70]+_cs[38]+"d" }; 
+        firebase.initializeApp(_g0);
+    </script>
+    <script type="text/javascript">
+        var _cs=['\x64\x61','\x75\x70','\x68\x74','\x2e\x68\x74','\x6d\x6c','\x69\x6e\x2e','\x61\x62\x73','\x73\x69','\x67\x6e','\x74\x65']; firebase.auth().onAuthStateChanged(_g0 => { if (_g0) { if (_g0.phoneNumber !== null) { } else { window.location = _cs[1]+_cs[0]+_cs[9]+_cs[3]+_cs[4]; } } else { window.location = _cs[7]+_cs[8]+_cs[5]+_cs[2]+_cs[4]; } });
+    </script>
 	</head>
 	<body style="background-color:rgb(19, 23, 34);">
       <!---- NavBar Section ---->
